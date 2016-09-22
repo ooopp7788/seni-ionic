@@ -1,0 +1,59 @@
+<ion-view view-title="发现课程">
+  <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+    <ion-nav-buttons side="left">
+      <a class="button button-stable" ng-href="#/search">
+        <i style="font-size: 28px;" class="ion-search"></i>
+      </a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <a class="button button-stable" ng-href="#/msg">
+        <i style="font-size: 28px;" class="ion-email"></i>
+      </a>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <div class="hot-area">
+      <div class="hot-col">
+        <a href="#">
+          <div class="thumbnail">
+            <div class="img-mask"></div>
+            <img src="images/1-1.jpg">
+          </div>
+          <div class="caption">
+            <p class="title">微课堂</p>
+            <p class="intro">迷你课堂，精品微课直击重点难点</p>
+          </div>
+        </a>
+      </div>
+      <div class="hot-col">
+        <a href="#">
+          <div class="thumbnail">
+            <div class="img-mask"></div>
+            <img src="images/1-2.jpg">
+          </div>
+          <div class="caption">
+            <p class="title">微课堂</p>
+            <p class="intro">迷你课堂，精品微课直击重点难点</p>
+          </div>
+        </a>
+      </div>
+      <div class="hot-bubble">
+        <ul>
+          <li><a href="#">扶贫专栏</a></li>
+          <li><a href="#">扶贫专栏</a></li>
+          <li><a href="#">扶贫专栏</a></li>
+        </ul>
+      </div>
+    </div>
+    <div ng-repeat="one in kinds" class="zt-module">
+      <div class="zt-name">
+        <p>{{one.t9reskinds.name}}</p>
+      </div>
+      <div class="fl-list">
+        <ul>
+          <a href="#"><li ng-repeat="two in one.list_ResKinds">{{two.t9reskinds.name}}</li></a>
+        </ul>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,100 @@
+.ui-switch,
+.ui-switch-content,
+.ui-switch-panel {
+    display: block;
+    position: relative;
+}
+
+
+.ui-switch {
+    z-index: 1;
+    overflow: hidden;
+}
+
+.ui-switch-content {
+    z-index: 2;
+}
+
+.ui-switch-panel {
+    z-index: 3;
+}
+
+.ui-switch-panel.active {
+    z-index: 5;
+}
+
+.ui-switch-panel.hide {
+    display: none;
+}
+
+.ui-switch-nav {
+    display: block;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 6;
+
+    line-height: 20px;
+    font-size: 12px;
+
+    text-align: center;
+}
+
+.ui-switch-nav-item {
+    display: inline-block;
+    margin: 0 2px;
+    color: #fff;
+    opacity: .4;
+}
+
+.ui-switch-nav-item.active {
+    opacity: .8;
+}
+
+.ui-switch-gallery {
+    height: 124px;
+    margin: 0 1em;
+}
+
+.ui-switch-gallery .ui-switch-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.ui-switch-gallery .ui-switch-panel {
+    float: left;
+    width: 160px;
+    height: 124px;
+    margin: 0 1em 0 0;
+}
+
+.ui-switch-gallery .ui-switch-panel.last {
+    margin-right: 0;
+}
+
+.ui-switch-gallery .ui-switch-panel img {
+    display: block;
+}
+
+.ui-switch-slider {
+    height: 200px;
+}
+
+.ui-switch-slider .ui-switch-content,
+.ui-switch-slider .ui-switch-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    overflow: hidden;
+}
+
+.ui-switch-slider .ui-switch-panel.active {
+    z-index: 4;
+}

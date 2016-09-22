@@ -1,0 +1,23 @@
+
+<div class=" related-video">
+  <div class="course-list">
+    <ul>
+      <a ng-repeat="relate in relates" ng-href="#/play/{{relate.resid}}/info">
+        <li class="course-one">
+          <div class="thumbnail">
+            <div class="inner">
+              <img onerror="this.src='images/default.png'" ng-src="{{relate.picpath}}" alt="缩略图"/>
+            </div>
+          </div>
+          <div class="caption">
+            <p class="caption-top">{{relate.caption}}</p>
+            <div class="caption-bottom">
+              <span>{{relate.clknum}}人学习</span><br/>
+              <span>时长：{{relate.videolength/60|number:0}}分钟</span>
+            </div>
+          </div>
+        </li>
+      </a>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,165 @@
+
+@blue: #2dA7E0;
+@red: #DC143C;
+
+.login-main{
+  width: 96%;
+  margin: 0 3%;
+  .top{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    img{
+      width: 80px;
+      height: 80px;
+      margin: 5px auto;
+    }
+    p{
+      font-size: 13px;
+    }
+  }
+  .bottom{
+    margin-top: 30px;
+    form{
+      p{
+        width: 70%;
+        color: #444;
+        margin-left: 15%;
+        height: 50px;
+        font-size: 14px;
+        line-height: 50px;
+        position: relative;
+        padding-left: 8px;
+        border-bottom: 1px solid #eee;
+        input[type="text"],input[type="password"]{
+          padding: 4px 10px;
+          width: 70%;
+          color: #ccc;
+          position: absolute;
+          left: 4em;
+          top: 9px;
+          font-size: 14px;
+        }
+        #captcha{
+          width: 90px;
+          position: absolute;
+          left: 4em;
+          top: 9px;
+        }
+        img{
+          position: absolute;
+          left: 152px;
+          top: 0;
+          height:50px;
+          width: 80px;
+          float: right;
+          margin-top: -5px;
+        }
+        .submit-btn{
+          margin-top: 20px;
+          font-size: 13px;
+          padding: 10px 0;
+          width: 100%;
+          color: #fff;
+          background-color: @blue;
+        }
+
+      }
+      #link{
+        margin: 20px auto;
+        text-align: center;
+        border: none;
+        .reg{
+          color: @blue;
+        }
+      }
+    }
+  }
+}
+.reg-main{
+  width: 96%;
+  margin: 0 3%;
+  .top{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    img{
+      width: 80px;
+      height: 80px;
+      margin: 20px auto;
+    }
+    p{
+      font-size: 13px;
+    }
+  }
+  .bottom {
+    b{
+      font-size: 15px;
+      color: @blue;
+      height: 50px;
+      line-height: 50px;
+      margin-left: 15%;
+    }
+    form{
+      width: 70%;
+      margin-left: 15%;
+      p{
+        height: 50px;
+        line-height: 50px;
+        position: relative;
+        .userid{
+          margin-left: 3em;
+        }
+        .password{
+          margin-left: 3em;
+        }
+        .password2{
+          margin-left: 1em;
+        }
+        .captcha{
+          margin-left: 2em;
+          width: 30%;
+        }
+        img{
+          margin-left: 10px;
+          width: 70px;
+          height: 50px;
+          position: absolute;
+          top: 0px; 
+        }
+        .msg-btn{
+          margin-left: 10px;
+          padding: 5px 10px;
+          border-radius: 2px;
+          color: #fff;
+          background-color: @blue;
+        }
+        .msg-num{
+          margin-left: 2em;
+          width: 30%;
+        }
+        input{
+          padding: 5px 10px;
+          color: #ccc;
+          width: 65%;
+          font-size: 12px;
+        }
+      }
+      .submit-btn{
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        color: #fff;
+        background-color: @blue;
+      }
+    }
+    .link-login{
+      text-align: center;
+      width: 114px;
+      margin: 20px auto;
+      a{
+        margin-left: 10px;
+      }
+    }
+  }
+}

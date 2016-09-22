@@ -1,0 +1,150 @@
+<ion-view view-title="T9云平台">
+    <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+        <ion-nav-buttons side="left">
+            <a class="button button-stable" ng-href="#/search">
+                <i style="font-size: 28px;" class="ion-search"></i>
+            </a>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <a class="button button-stable" ng-href="#/msg">
+                <i style="font-size: 28px;" class="ion-email"></i>
+            </a>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content>
+        <div class="idxmain">
+
+            <!--轮播图-->
+            <div class="slide-box">
+                <div class="slide-list">
+                    <div class="slide-content">
+                        <a ng-repeat="slide in slides" ng-href="slide.caption">
+                            <div class="img-container">
+                                <img onerror="this.src='images/default.png'" ng-src="{{slide.mem}}" alt="">
+                            </div>
+                        </a>
+                        <div class="count-btn">
+                            <span ng-repeat="slide in slides"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--菜单nav-->
+            <div class="nav">
+                <div class="nav-container">
+                    <ul>
+                        <li><a href=""> <img
+                                src="images/nav5.png"/>
+                            <div class="title">{{kinds[0].t9reskinds.name}}</div>
+                        </a></li>
+                        <li><a href=""> <img
+                                src="images/nav1.png"/>
+                            <div class="title">{{kinds[1].t9reskinds.name}}</div>
+                        </a></li>
+                        <li><a href=""> <img
+                                src="images/nav2.png"/>
+                            <div class="title">{{kinds[2].t9reskinds.name}}</div>
+                        </a></li>
+                        <li><a href=""> <img
+                                src="images/nav3.png"/>
+                            <div class="title">{{kinds[3].t9reskinds.name}}</div>
+                        </a></li>
+                        <li><a href=""> <img
+                                src="images/nav4.png"/>
+                            <div class="title">{{kinds[4].t9reskinds.name}}</div>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--通知模块-->
+            <div class="text-module">
+                <p class="text-title">通知公告</p>
+                <div class="note-area">
+                    <ul mj-vertical-slider ng-style="noteStyle" class="note-list">
+                        <li ng-repeat="note in notes|limitTo:5" class="note-one">
+                            <a href="">
+                                <p class="time">{{note.savedate||00 | date : 'yyyy-MM-dd'}}</p>
+                                <p class="title-name">{{note.title}}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--视频模块-->
+            <div class="video-module">
+                <p class="video-title">最新课程</p>
+                <ul>
+                    <li ng-repeat="new in news | limitTo:4">
+                        <a ng-href="#/play/{{new.resid}}">
+                            <div class="video-one">
+                                <div class="thumbnail">
+                                    <img onerror="this.src='images/default.png'" ng-src="{{new.picpath}}" alt="缩略图"/>
+                                    <div class="img-mask"></div>
+                                </div>
+                                <div class="caption">
+                                    <p>{{new.caption||'标题'}}</p>
+                                    <span class="video-time">{{new.videolength||0 | videoTime}}</span>
+                                    <span class="study-num">{{new.clknum||0}}人学习</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="video-module">
+                <p class="video-title">最热课程</p>
+                <ul>
+                    <li ng-repeat="hot in hots | limitTo:4">
+                        <a ng-href="#/play/{{hot.resid}}/info">
+                            <div class="video-one">
+                                <div class="thumbnail">
+                                    <img onerror="this.src='images/default.png'" ng-src="{{hot.picpath}}" alt="缩略图"/>
+                                    <div class="img-mask"></div>
+                                </div>
+                                <div class="caption">
+                                    <p>{{hot.caption}}</p>
+                                    <span class="video-time">{{hot.videolength | videoTime}}</span>
+                                    <span class="study-num">{{hot.clknum}}人学习</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="video-module">
+                <p class="video-title">视频推荐</p>
+                <ul>
+                    <li ng-repeat="like in likes | limitTo:4">
+                        <a ng-href="#/play/{{like.resid}}/info">
+                            <div class="video-one">
+                                <div class="thumbnail">
+                                    <img onerror="this.src='images/default.png'" ng-src="{{like.picpath}}" alt="缩略图"/>
+                                    <div class="img-mask"></div>
+                                </div>
+                                <div class="caption">
+                                    <p>{{like.caption}}</p>
+                                    <span class="video-time">{{like.videolength | videoTime}}</span>
+                                    <span class="study-num">{{like.clknum}}人学习</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 反馈模块 -->
+            <div class="feedback-module">
+                <p class="feedback-title">学员反馈</p>
+                <ul class="feedback-list">
+                    <li ng-repeat="feedback in feedbacks | limitTo:3" class="feedback-one" style="top: 0px;">
+                        <p class="time">{{feedback.createtime||0 | date : 'yyyy-MM-dd'}}</p>
+                        <p class="title-name">{{feedback.context||'真棒！'}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
