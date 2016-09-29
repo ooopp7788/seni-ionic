@@ -14,4 +14,18 @@ angular.module('app.filters', [])
       var res = hh+':'+mm+':'+ss;
       return res;
     }
+  })
+
+  .filter('msgType',function () {
+    return function (input) {
+      if(input==1)return '系统消息：';
+      if(input==2)return '班级消息：';
+    }
+  })
+
+  .filter('sex',function () {
+    return function (input) {
+      if(input==1)return '男';
+      if(input==2)return '女';
+    }
   });

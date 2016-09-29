@@ -17,7 +17,8 @@ angular.module('app', ['ionic',
     //$rootScope.base = "http://123.57.212.58:8012/edu";
     $rootScope.base = "http://t9cloud.com";
     //$rootScope.base = "http://192.168.1.141:8080/seni_edu";
-
+    $rootScope.loged = false;
+    $rootScope.info = {};
     $ionicModal.fromTemplateUrl('login.html', {
       scope: $rootScope,
       animation: 'slide-in-up'
@@ -56,15 +57,24 @@ angular.module('app', ['ionic',
           $rootScope.hidetabs = true;
         } else {
           $rootScope.hidetabs = false;
-        }
-        ;
-      })
+        };
+      });
+      if(!$rootScope.loged) {
+        $http.get($rootScope.base+'/json/islogined').success(function (response) {
+          console.log(response)
+          if(response.code===1){
+            $rootScope.loged=true;
+            $rootScope.$emit('loged');
+          }
+          if(response.code===2)$rootScope.loged=false;
+        })
+      }
     });
   })
   .config(function ($stateProvider, $sceDelegateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
-    //$httpProvider.defaults.withCredentials = true;
-    //console.log($httpProvider.defaults)
-    //$httpProvider.defaults.headers.common = { 'Access-Control-Allow-Origin' : 'http://192.168.1.168:8100' };
+
+    $httpProvider.defaults.withCredentials = true;
+
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
@@ -72,7 +82,7 @@ angular.module('app', ['ionic',
     $sceDelegateProvider.resourceUrlWhitelist([
       'self',
       // Allow loading from our assets domain.  Notice the difference between * and **.
-      'http://t9cloud.com/**']);
+      'http://124.227.108.93:9001/**']);
     $stateProvider
 
       .state('tab', {
@@ -161,6 +171,30 @@ angular.module('app', ['ionic',
         url: '/setting',
         templateUrl: 'templates/setting.html',
         controller: 'SetCtrl'
+      })
+
+      .state('info', {
+        url: '/info',
+        templateUrl: 'templates/info.html',
+        controller: 'InfoCtrl'
+      })
+
+      .state('reg', {
+        url: '/reg',
+        templateUrl: 'templates/reg.html',
+        controller: 'RegCtrl'
+      })
+
+      .state('password', {
+        url: '/password',
+        templateUrl: 'templates/password.html',
+        controller: 'PwCtrl'
+      })
+
+      .state('phone', {
+        url: '/phone',
+        templateUrl: 'templates/phone.html',
+        controller: 'PhoneCtrl'
       });
 
     // if none of the above states are matched, use this as the fallback

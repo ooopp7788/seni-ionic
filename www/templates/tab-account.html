@@ -13,25 +13,35 @@
   </ion-nav-bar>
   <ion-content>
     <div class="account">
-      <div class="account-top">
+      <div ng-show="!loged" class="account-top">
         <div class="headpic">
-          <img src="images/head.png">
+          <img ng-src="{{picPath||'images/head.png'}}">
+          <p style="text-align: center;color: #444" >{{info.idname}}</p>
         </div>
         <div class="headcaption">
           <p >你尚未登陆<br/>无法记录学习进度，建议登陆后再学习!</p>
-          <p class="logafter">你当前获得4学分<br/>请继续学习!</p>
+        </div>
+      </div>
+      <div ng-show="loged" class="account-top">
+        <div ng-click="goInfo()" class="headpic">
+          <img ng-src="{{picPath||'images/head.png'}}">
+          <p style="text-align: center;color: #444" >{{info.idname}}</p>
+        </div>
+        <div class="headcaption">
+          <p ng-show="loged">你当前获得66学分<br/>请继续学习!</p>
         </div>
       </div>
 
       <div class="account-bottom">
-        <div class="logpre">
+        <div ng-show="!loged">
           <div class="login-btn" ng-click=openModal()>T9云平台会员登陆</div>
           <a class="reg-btn" href="#/reg">没有账号，去注册 ></a>
         </div>
-        <div class="logafter">
-          <ul >
-            <a ng-repeat="study in studys" ng-href="#/play/{{study.resid}}/info">
-              <li class="course-one">
+        <div class="studying" ng-show="loged">
+          <p class="title">学习记录</p>
+          <ul class="course-list">
+            <a ng-repeat="study in studys" ng-href="#/play/{{study.resid}}">
+              <li class="course-one" class="course-one">
                 <div class="thumbnail">
                   <div class="inner">
                     <img onerror="this.src='images/default.png'" ng-src="{{study.picpath}}" alt="缩略图"/>

@@ -3,7 +3,7 @@
   <span class="ico ico-title-ico"></span>
   <span>{{videoInfo.caption}}</span><br/><br/>
   <span class="ico ico-who-ico"></span>
-  <span>{{videoInfo.provider}}</span><br/><br/>
+  <span>{{videoInfo.provider || "未知"}}</span><br/><br/>
   <span class="ico ico-clock-ico"></span>
   <span>{{videoInfo.videolength/60|number:0}}分钟</span><br/><br/>
   <span class="ico ico-place-ico"></span>

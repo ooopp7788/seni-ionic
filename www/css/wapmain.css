@@ -3,10 +3,18 @@
 .account .account-top .headpic{width:90px;height:90px;border-radius:90px;border:1px solid transparent;margin:30px auto}
 .account .account-top .headcaption{margin-top:-3px;height:50px;line-height:25px}
 .account .account-top .headcaption p{color:#777;height:50px;line-height:25px;text-align:center;font-size:14px}
-.account .account-top .headcaption .logpre{display:block}
-.account .account-top .headcaption .logafter{display:none}
-.account .account-bottom .logpre .login-btn{margin-top:55px;height:40px;line-height:40px;text-align:center;font-size:17px;width:80%;margin-left:10%;color:#eee;border-radius:5px;background-color:#2dA7E0}
-.account .account-bottom .logpre .reg-btn{display:block;width:120px;margin:20px auto;padding:5px 0;color:#2dA7E0}
+.account .account-bottom .login-btn{margin-top:55px;height:40px;line-height:40px;text-align:center;font-size:17px;width:80%;margin-left:10%;color:#eee;border-radius:5px;background-color:#2dA7E0}
+.account .account-bottom .reg-btn{display:block;width:120px;margin:20px auto;padding:5px 0;color:#2dA7E0}
+.account .account-bottom .studying .title{height:50px;font-size:18px;color:#444;line-height:50px;text-align:center}
+.account .account-bottom .studying .course-list{width:96%;margin:0 3%}
+.account .account-bottom .studying .course-list .course-one{width:100%;overflow:hidden;position:relative;height:100%;padding-bottom:10px;margin-top:10px}
+.account .account-bottom .studying .course-list .course-one .thumbnail{width:48%;float:left;position:relative;overflow:hidden;margin-right:4%}
+.account .account-bottom .studying .course-list .course-one .thumbnail .inner{width:100%;padding-top:56%;overflow:hidden;position:relative}
+.account .account-bottom .studying .course-list .course-one .thumbnail .inner img{width:100%;height:100%;position:absolute;left:0;top:0}
+.account .account-bottom .studying .course-list .course-one .caption{width:48%;display:block;float:left;position:absolute;right:0;height:100%;border-bottom:1px solid #CCC}
+.account .account-bottom .studying .course-list .course-one .caption .caption-top{text-align:left;white-space:nowrap;height:24px;font-size:16px;text-overflow:ellipsis;line-height:24px;width:100%;display:block;float:left;overflow:hidden;padding-bottom:10px}
+.account .account-bottom .studying .course-list .course-one .caption .caption-bottom{display:inline-block;float:left;width:100%}
+.account .account-bottom .studying .course-list .course-one .caption .caption-bottom span{line-height:24px;display:block;float:left;width:100%;text-align:left}
 *{margin:0;padding:0;border-style:none}
 body,button,html,input,p,select,textarea{font-family:"Microsoft YaHei","΢���ź�",helvetica,arial,verdana,tahoma,sans-serif;font-size:13px;line-height:20px}
 a,a:hover,a:link,a:visited{color:#000;text-decoration:none}
@@ -29,36 +37,18 @@ img{width:100%;height:100%}
 .ico-watch-ico{height:21px;width:21px;background-position:0 -155px}
 .ico-paper-ico{height:51px;width:41px;background-position:0 -176px}
 .logo{height:208px;width:208px;background-position:0 -227px}
-.login-main{width:96%;margin:0 3%}
-.login-main .top{width:100%;text-align:center;margin-top:20px}
-.login-main .top img{width:80px;height:80px;margin:5px auto}
-.login-main .top p{font-size:13px}
-.login-main .bottom{margin-top:20px}
-.login-main .bottom form p{width:70%;color:#444;margin-left:15%;height:50px;font-size:14px;line-height:50px;position:relative;padding-left:8px;border-bottom:1px solid #eee}
-.login-main .bottom form p input[type=text],.login-main .bottom form p input[type=password]{padding:4px 10px;width:70%;color:#ccc;position:absolute;left:4em;top:9px;font-size:14px}
-.login-main .bottom form p #captcha{width:90px;position:absolute;left:4em;top:9px}
-.login-main .bottom form p img{position:absolute;left:152px;top:0;height:50px;width:80px;float:right;margin-top:-5px}
-.login-main .bottom form p .submit-btn{margin-top:20px;font-size:16px;padding:10px 0;width:100%;color:#fff;background-color:#2dA7E0;border-radius:5px}
-.login-main .bottom form #link{margin:20px auto;text-align:center;border:none}
-.login-main .bottom form #link .reg{color:#2dA7E0}
-.reg-main{width:96%;margin:0 3%}
-.reg-main .top{width:100%;text-align:center;margin-bottom:20px}
-.reg-main .top img{width:80px;height:80px;margin:20px auto}
-.reg-main .top p{font-size:13px}
-.reg-main .bottom b{font-size:15px;color:#2dA7E0;height:50px;line-height:50px;margin-left:15%}
-.reg-main .bottom form{width:70%;margin-left:15%}
-.reg-main .bottom form p{height:50px;line-height:50px;position:relative}
-.reg-main .bottom form p .userid{margin-left:3em}
-.reg-main .bottom form p .password{margin-left:3em}
-.reg-main .bottom form p .password2{margin-left:1em}
-.reg-main .bottom form p .captcha{margin-left:2em;width:30%}
-.reg-main .bottom form p img{margin-left:10px;width:70px;height:50px;position:absolute;top:0}
-.reg-main .bottom form p .msg-btn{margin-left:10px;padding:5px 10px;border-radius:2px;color:#fff;background-color:#2dA7E0}
-.reg-main .bottom form p .msg-num{margin-left:2em;width:30%}
-.reg-main .bottom form p input{padding:5px 10px;color:#ccc;width:65%;font-size:12px}
-.reg-main .bottom form .submit-btn{width:100%;padding:10px;margin-top:10px;color:#fff;background-color:#2dA7E0}
-.reg-main .bottom .link-login{text-align:center;width:114px;margin:20px auto}
-.reg-main .bottom .link-login a{margin-left:10px}
+.login-main,.reg-main{width:96%;margin:0 3%}
+.login-main .top,.reg-main .top{width:100%;text-align:center;margin-top:20px}
+.login-main .top img,.reg-main .top img{width:80px;height:80px;margin:5px auto}
+.login-main .top p,.reg-main .top p{font-size:13px}
+.login-main .bottom,.reg-main .bottom{margin-top:20px}
+.login-main .bottom form p,.reg-main .bottom form p{width:70%;color:#444;margin-left:15%;height:50px;font-size:14px;line-height:50px;position:relative;padding-left:8px;border-bottom:1px solid #eee}
+.login-main .bottom form p input[type=text],.login-main .bottom form p input[type=password],.reg-main .bottom form p input[type=text],.reg-main .bottom form p input[type=password]{padding:4px 10px;width:70%;color:#ccc;position:absolute;left:5em;top:9px;font-size:14px}
+.login-main .bottom form p #captcha,.reg-main .bottom form p #captcha{width:90px;position:absolute;left:5em;top:9px}
+.login-main .bottom form p img,.reg-main .bottom form p img{position:absolute;left:152px;top:0;height:50px;width:80px;float:right;margin-top:-5px}
+.login-main .bottom form p .submit-btn,.reg-main .bottom form p .submit-btn{margin-top:20px;font-size:16px;padding:10px 0;width:100%;color:#fff;background-color:#2dA7E0;border-radius:5px}
+.login-main .bottom form #link,.reg-main .bottom form #link{margin:20px auto;text-align:center;border:none}
+.login-main .bottom form #link .reg,.reg-main .bottom form #link .reg{color:#2dA7E0}
 .player-main{font-size:14px;width:100%}
 .player-main .player{width:100%;position:relative;overflow:hidden}
 .player-main .player .player_html5{width:100%;height:100%;margin:auto;top:0;left:0;right:0;bottom:0}
@@ -108,7 +98,8 @@ img{width:100%;height:100%}
 .loading img{margin-top:-10px;height:50px;width:50px}
 .no-result{overflow:hidden;text-align:center}
 .no-result p{margin-top:10px;color:#aaa;position:relative;z-index:10}
-
+.popup-sex{height:40px;line-height:40px;text-align:center;border:1px solid #ccc}
+.popup-body .current{background-color:#2dA7E0;color:#fff}
 .sort-main{width:100%}
 .sort-main .menu-container{width:100%}
 .sort-main .menu-container .zt-container{width:100%;overflow:hidden;height:41px;opacity:1;-webkit-transition-duration:.4s}

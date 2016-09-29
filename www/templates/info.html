@@ -1,0 +1,39 @@
+<ion-view view-title="个人信息">
+  <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+    <ion-nav-buttons side="left">
+      <button class="button button-stable" ng-click="$ionicGoBack()">
+        <i style="font-size: 20px;" class="ion-chevron-left"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content style="background-color: #f8f8f8">
+    <ion-list>
+      <ion-item class="item-avatar item-icon-right" type="item-text-wrap" ng-click="changeName()">
+        <img ng-src="{{info.picPath||'images/head.png'}}" />
+        <span ng-bind="info.idname" style="position: absolute;left:72px;top: 26px;">姓名</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <ion-item ng-click="changeSex()" style="margin-top: 30px;" class="item-icon-right" type="item-text-wrap">
+        <span>性别</span><span style="float: right;color:#666">{{info.sex|sex}}</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <ion-item class="item-icon-right" type="item-text-wrap" ng-click="changeDpt()">
+        <span>部门</span><span ng-bind="info.dptname" style="float: right;color:#666">15997411724</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <ion-item class="item-icon-right" type="item-text-wrap" ng-click="changePos()">
+        <span>职位</span><span ng-bind="info.poscode" style="float: right;color:#666">15997411724</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <ion-item style="margin-top: 30px;" class="item-icon-right" type="item-text-wrap" href="#/phone">
+        <span>手机号</span><span ng-bind="info.phoneno" style="float: right;color:#666">15997411724</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <ion-item class="item-icon-right" type="item-text-wrap" href="#/password">
+        <span>密码</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+    <button style="height: 50px;width: 100%;background-color: #2dA7E0;color: #fff;font-size: 17px;margin-top: 30px;" ng-click="logout()">退出登陆</button>
+  </ion-content>
+</ion-view>

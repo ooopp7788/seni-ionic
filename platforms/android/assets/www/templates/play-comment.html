@@ -9,6 +9,10 @@
         <input value="发表评论" ng-click="commentsSubmit()" type="button">
       </div>
     </form>
+    <div ng-init="loading=!0" ng-show="loading" class="loading">
+      <img class="loading-img" src="images/loading.gif">
+      <p>&nbsp;&nbsp;&nbsp;加载中...</p>
+    </div>
     <ul id="comment" class="comment-all">
         <li ng-repeat="comment in comments">
           <div class="comment-head">

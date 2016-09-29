@@ -130,4 +130,19 @@ angular.module('app.directives', [])
       console.log(iele[0])
     }
   }
+})
+
+  /*
+  选项卡点击变色
+   */
+.directive('clickColor',function(){
+  return {
+    restrict: 'EA',
+    link: function(scope,iele,iattrs){
+      iele.on('click',function (e) {
+        iele.parent().children().removeClass('current');
+        iele.addClass('current')
+      })
+    }
+  }
 });

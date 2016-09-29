@@ -1,0 +1,28 @@
+<ion-view view-title="修改密码">
+  <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+    <ion-nav-buttons side="left">
+      <button class="button button-stable" ng-click="$ionicGoBack()">
+        <i style="font-size: 20px;" class="ion-chevron-left"></i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button button-stable" ng-click="save()">
+        保存
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <div class="reg-main">
+      <div class="bottom">
+        <form>
+          <p>当前密码
+            <input ng-model="params.password" type="password" class="password">
+          </p>
+          <p>新手机号
+            <input ng-model="params.phone" type="text" class="password">
+          </p>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

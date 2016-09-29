@@ -1,18 +1,42 @@
 <ion-view animation="slide-in-up">
 
-  <ion-content>
+  <ion-content ng-init="showState={showKeyword:true,searching:false,result:true}">
     <div class="search-header">
       <div class="container-s">
         <form name="form">
-          <input required ng-enter="searchSubmit(caption)" name="search" id="search" ng-model="caption"  type="text"/>
+          <input required ng-enter="searchSubmit(showState,caption)" name="search" id="search" ng-model="caption"  type="text"/>
           <span class="cancle-btn" ng-click="$ionicGoBack();caption = ''">取消</span>
-          <span ng-show="!form.search.required" class="del-btn">x</span>
+          <span ng-click="caption=''" ng-show="!form.search.required" class="del-btn">x</span>
         </form>
       </div>
-  </div>
-    <div ng-show="showKeyboard" ng-init="showKeyboard=!0" class="keyword-list">
+    </div>
+    <div ng-show="showState.showKeyword"  class="keyword-list">
       <ul>
-        <li>关键词</li>
+        <li ng-click="searchSubmit(showState,keyword)" ng-repeat="keyword in keywords">{{keyword}}</li>
+      </ul>
+    </div>
+    <div ng-show="showState.searching" class="loading">
+      <img class="loading-img" src="images/loading.gif">
+      <p>&nbsp;&nbsp;&nbsp;加载中...</p>
+    </div>
+    <div ng-show="!showState.result" class="no-result">
+      <p>暂无相关数据...</p>
+    </div>
+    <div class="search-content">
+      <ul class="course-list">
+        <li ng-repeat="course in courses" class="course-one">
+          <a ng-href="wapplay/{{course.resid}}">
+            <div class="thumbnail">
+              <div class="img-container">
+                <img onerror="this.src='images/default.png'" ng-src="{{course.picpath}}" alt="缩略图">
+              </div>
+            </div>
+            <div class="caption">
+              <b>{{course.caption}}</b>
+              <p>时长：{{course.checktime}}分钟</p><p>观看：{{course.clknum}}人</p>
+            </div>
+          </a>
+        </li>
       </ul>
     </div>
   </ion-content>

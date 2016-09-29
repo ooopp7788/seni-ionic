@@ -22,7 +22,7 @@
     <ion-nav-view animation="slide-left-right"></ion-nav-view>
   </body>
   <script id="login.html" type="text/ng-template">
-    <div class="modal" ng-controller="logCtrl">
+    <div class="modal" ng-controller="LogCtrl">
       <ion-header-bar style="background-color: #f8f8f8">
         <button class="button button-stable" ng-click="closeModal()">
           <i style="font-size: 20px;" class="ion-chevron-left"></i>
@@ -49,7 +49,7 @@
               <p>
                 <input class="submit-btn" type="button" value="登录" ng-click="logSubmit()">
               </p>
-              <p id="link"><a class="reg" href="">还没有账号？去注册 ></a></p>
+              <p id="link"><a ng-click="modal.hide()" class="reg" href="#/reg">还没有账号？去注册 ></a></p>
             </form>
           </div>
         </div>

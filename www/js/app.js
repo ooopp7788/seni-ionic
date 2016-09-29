@@ -15,9 +15,10 @@ angular.module('app', ['ionic',
 
   .run(function ($ionicPlatform, $rootScope, $timeout, $location, $ionicModal ,$http) {
     //$rootScope.base = "http://123.57.212.58:8012/edu";
-    //$rootScope.base = "http://t9cloud.com";
-    $rootScope.base = "http://192.168.1.141:8080/seni_edu";
-
+    $rootScope.base = "http://t9cloud.com";
+    //$rootScope.base = "http://192.168.1.141:8080/seni_edu";
+    $rootScope.loged = false;
+    $rootScope.info = {};
     $ionicModal.fromTemplateUrl('login.html', {
       scope: $rootScope,
       animation: 'slide-in-up'
@@ -57,7 +58,17 @@ angular.module('app', ['ionic',
         } else {
           $rootScope.hidetabs = false;
         };
-      })
+      });
+      if(!$rootScope.loged) {
+        $http.get($rootScope.base+'/json/islogined').success(function (response) {
+          console.log(response)
+          if(response.code===1){
+            $rootScope.loged=true;
+            $rootScope.$emit('loged');
+          }
+          if(response.code===2)$rootScope.loged=false;
+        })
+      }
     });
   })
   .config(function ($stateProvider, $sceDelegateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
@@ -160,6 +171,30 @@ angular.module('app', ['ionic',
         url: '/setting',
         templateUrl: 'templates/setting.html',
         controller: 'SetCtrl'
+      })
+
+      .state('info', {
+        url: '/info',
+        templateUrl: 'templates/info.html',
+        controller: 'InfoCtrl'
+      })
+
+      .state('reg', {
+        url: '/reg',
+        templateUrl: 'templates/reg.html',
+        controller: 'RegCtrl'
+      })
+
+      .state('password', {
+        url: '/password',
+        templateUrl: 'templates/password.html',
+        controller: 'PwCtrl'
+      })
+
+      .state('phone', {
+        url: '/phone',
+        templateUrl: 'templates/phone.html',
+        controller: 'PhoneCtrl'
       });
 
     // if none of the above states are matched, use this as the fallback
