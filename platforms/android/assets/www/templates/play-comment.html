@@ -1,0 +1,31 @@
+
+<div class="chat-area">
+  <div class="comment-fn ">
+    <form id="">
+      <div class="comment-input">
+        <textarea ng-model='text' class="default-text" rows="4" name="CommentText" placeholder="留下您的评论"></textarea>
+      </div>
+      <div class="comment-sub">
+        <input value="发表评论" ng-click="commentsSubmit()" type="button">
+      </div>
+    </form>
+    <ul id="comment" class="comment-all">
+        <li ng-repeat="comment in comments">
+          <div class="comment-head">
+            <img onerror="this.src='images/head.png'" ng-src={{comment.resid}}/>
+          </div>
+          <div class="comment-content">
+            <div class="comment-user">
+              <span>{{comment.stdcode}}</span>
+            </div>
+            <div class="comment-text">
+              {{comment.comments}}
+            </div>
+            <div class="comment-date">时间：{{comment.comtime| date : 'yyyy年MM月dd日'}}</div>
+          </div>
+        </li>
+      </ul>
+  </div>
+</div>
+<!-- ion-infinite-scroll 上拉加载数据指令 distance默认1% nf-if的值为false时，就禁止执行on-infinite  -->
+<ion-infinite-scroll ng-if="vm.moredata" on-infinite="vm.loadMore()" distance="1%" ></ion-infinite-scroll>

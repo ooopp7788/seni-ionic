@@ -1,122 +1,52 @@
 angular.module('app.services', [])
 
-  .factory('Msgs', function () {
-    // Might use a resource here that returns a JSON array
-
-    // Some fake testing data
-    var msgs = [
-      {
-        id: 0,
-        name: 'Ben Sparrow',
-        lastText: 'You on your way?',
-        face: 'img/ben.png'
-      }, {
-        id: 1,
-        name: 'Max Lynx',
-        lastText: 'Hey, it\'s me',
-        face: 'img/max.png'
-      }, {
-        id: 2,
-        name: 'Adam Bradleyson',
-        lastText: 'I should buy a boat',
-        face: 'img/adam.jpg'
-      }, {
-        id: 3,
-        name: 'Perry Governor',
-        lastText: 'Look at my mukluks!',
-        face: 'img/perry.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 5,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }, {
-        id: 4,
-        name: 'Mike Harrington',
-        lastText: 'This is wicked good ice cream.',
-        face: 'img/mike.png'
-      }
-    ];
-
+  .factory('Msgs',['$http','$rootScope',function ($http,$rootScope) {
+    var msgs ;
     return {
       all: function () {
+        var url = $rootScope.base+'/json-mymsg';
+        if(msgs)return msgs;
+        msgs = $http.get(url);
         return msgs;
       },
-      remove: function (msg) {
-        msgs.splice(msgs.indexOf(msg), 1);
+      remove: function (id,index) {
+        msgs.splice(msgs.indexOf(index), 1);
       },
-      get: function (msgId) {
-        for (var i = 0; i < msgs.length; i++) {
-          if (msgs[i].id === parseInt(msgId)) {
-            return msgs[i];
-          }
-        }
-        return null;
+      refresh: function () {
+        var url = $rootScope.base+'/json-mymsg';
+        msgs = $http.get(url);
+        return msgs;
       }
     };
-  })
+  }])
 
   .factory('Kinds',['$http','$rootScope',function ($http,$rootScope) {
     return {
       all: function(){
         return $http.post($rootScope.base + "/getallkind");
+      },
+      one: function(num){
+        return $http.post($rootScope.base + "/getallkind").then(function(response){
+          return {
+            code: response.data[num].t9reskinds.code,
+            name: response.data[num].t9reskinds.name,
+            data:response.data[num].list_ResKinds
+          }
+        });
       }
     };
   }])
 
   .factory('Comments',['$http','$rootScope',function ($http,$rootScope) {
+    var cache ;
     return {
       get: function(resid,pagenum){
+        if(cache)return cache;
+        var CommentUrl = $rootScope.base+'/commentpage?resid='+resid+'&pagenum='+pagenum;
+        cache = $http.post(CommentUrl);
+        return $http.post(CommentUrl)
+      },
+      refresh: function(resid,pagenum){
         var CommentUrl = $rootScope.base+'/commentpage?resid='+resid+'&pagenum='+pagenum;
         return $http.post(CommentUrl)
       },

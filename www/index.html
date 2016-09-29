@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -35,20 +36,20 @@
           </div>
           <div class="bottom">
             <form id="waploginForm" autocomplete="off">
-              <p>&nbsp;&nbsp;账号：
+              <p>账&nbsp;&nbsp;&nbsp;号：
                 <input ng-model="login.userid" placeholder="请输入手机号或账号" type="text" class="userid" id="userid">
               </p>
-              <p>&nbsp;&nbsp;密码：
+              <p>密&nbsp;&nbsp;&nbsp;码：
                 <input ng-model="login.password" type="password" class="password" id="password">
               </p>
               <p>验证码：
                 <input ng-model="login.code" type="text" class="captcha" id="captcha">
-                <img id="captchaimg" ng-click="this.src='{{base}}/Code?=Math.random()'" ng-src="{{base}}/Code">
+                <img id="captchaimg" ng-click="changeCode()" ng-src="{{code}}">
               </p>
               <p>
                 <input class="submit-btn" type="button" value="登录" ng-click="logSubmit()">
               </p>
-              <p id="link"><a class="reg" href="">还没有账号？去注册</a></p>
+              <p id="link"><a class="reg" href="">还没有账号？去注册 ></a></p>
             </form>
           </div>
         </div>

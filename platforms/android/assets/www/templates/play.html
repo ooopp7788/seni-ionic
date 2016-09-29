@@ -1,174 +1,40 @@
 <ion-view view-title="课程详情" animation="slide-left-right">
-  <ion-nav-buttons side="left">
-    <button class="button button-stable" ng-click="$ionicGoBack()">
-      <i class="ion-chevron-left"></i>
-    </button>
-  </ion-nav-buttons>
-  <ion-content>
-    	<div class="player-main">
-    		<div class="player" id="player">
-    			<video class="player_html5" controls="controls" src="../video/video.mp4"></video>
-    		</div>
-            <ul class="video-navs">
-                <li class="current">课程详细</li>
-                <li>评论</li>
-                <li>相关视频</li>
-            </ul>
-            <div class="video-tabs">
-                <div class=" course-ifo">
-                    <span class="ico ico-title-ico"></span>
-                    <span>课程标题</span><br/><br/>
-                    <span class="ico ico-who-ico"></span>
-                    <span>邵兵</span><br/><br/>
-                    <span class="ico ico-clock-ico"></span>
-                    <span>43分钟</span><br/><br/>
-                    <span class="ico ico-place-ico"></span>
-                    <p>介绍：电子商务是以信息网络技术为手段，以电子交易方式进行交易活动和相关服务的活动，</p>
-                </div>
-                <div class="inactive chat-area">
-                    <div class="comment-fn ">
-                        <form id="" onsubmit="return false;">
-                            <div class="comment-input">
-                                <textarea class="default-text "rows="4" name="CommentText" placeholder="留下您的评论"></textarea>
-                            </div>
-                            <div class="comment-sub">
-                                <input value="发表评论" onclick="" type="button">
-                            </div>
-                        </form>
-                        <ul id="comment" class="comment-all">
-                            <li>
-                                <div class="comment-head">
-                                    <img src="./images/head.png" />
-                                </div>
-                                <div class="comment-content">
-                                    <div class="comment-user">
-                                        <span>王二小</span>
-                                    </div>
-                                    <div class="comment-text">真的很好看的视频，我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习！</div>
-                                    <div class="comment-date">时间：2016年4月10日</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="comment-head">
-                                    <img src="./images/head.png" />
-                                </div>
-                                <div class="comment-content">
-                                    <div class="comment-user">
-                                        <span>王二小</span>
-                                    </div>
-                                    <div class="comment-text">真的很好看的视频，我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习！</div>
-                                    <div class="comment-date">时间：2016年4月10日</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="comment-head">
-                                    <img src="./images/head.png" />
-                                </div>
-                                <div class="comment-content">
-                                    <div class="comment-user">
-                                        <span>王二小</span>
-                                    </div>
-                                    <div class="comment-text">真的很好看的视频，我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习我要告诉同事也来学习！</div>
-                                    <div class="comment-date">时间：2016年4月10日</div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="refresh">
-                            <p>
-                                <img src="../images/loading.gif">
-                                <span>正在刷新更多评论</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="inactive related-video">
-                    <div class="course-list">
-                        <ul>
-                            <a href="wap-play.html"><li class="course-one">
-                                <div class="thumbnail">
-                                    <div class="inner">
-                                        <img src="../images/1-3.jpg" alt="缩略图"/>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <p class="caption-top">了解平11台的功能和业务范围</p>
-                                    <div class="caption-bottom">
-                                        <span class="red">已经学习35%</span><br/>
-                                        <span>时长：34分</span>
-                                    </div>
-                                </div>
-                            </li></a>
-                            <a href="wap-play.html"><li class="course-one">
-                                <div class="thumbnail">
-                                    <div class="inner">
-                                        <img src="../images/1-3.jpg" alt="缩略图"/>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <p class="caption-top">了解平台的功能和业务范围</p>
-                                    <div class="caption-bottom">
-                                        <span class="red">已经学习35%</span><br/>
-                                        <span>时长：34分</span>
-                                    </div>
-                                </div>
-                            </li></a>
-                            <a href="wap-play.html"><li class="course-one">
-                                <div class="thumbnail">
-                                    <div class="inner">
-                                        <img src="../images/1-3.jpg" alt="缩略图"/>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <p class="caption-top">了解平台的功能和业务范围</p>
-                                    <div class="caption-bottom">
-                                        <span class="red">已经学习35%</span><br/>
-                                        <span>时长：34分</span>
-                                    </div>
-                                </div>
-                            </li></a>
-                            <a href="wap-play.html"><li class="course-one">
-                                <div class="thumbnail">
-                                    <div class="inner">
-                                        <img src="../images/1-3.jpg" alt="缩略图"/>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <p class="caption-top">了解平台的功能和业务范围</p>
-                                    <div class="caption-bottom">
-                                        <span class="red">已经学习35%</span><br/>
-                                        <span>时长：34分</span>
-                                    </div>
-                                </div>
-                            </li></a>
-                            <a href="wap-play.html"><li class="course-one">
-                                <div class="thumbnail">
-                                    <div class="inner">
-                                        <img src="../images/1-3.jpg" alt="缩略图"/>
-                                    </div>
-                                </div>
-                                <div class="caption">
-                                    <p class="caption-top">了解平台的功能和业务范围</p>
-                                    <div class="caption-bottom">
-                                        <span class="red">已经学习35%</span><br/>
-                                        <span>时长：34分</span>
-                                    </div>
-                                </div>
-                            </li></a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <script>
-                $.tabsPlugin("video-navs","video-tabs");
-                $(document).ready(function() {
-                    $(window).scroll(function() {
-                        //$(document).scrollTop() 获取垂直滚动的距离
-                        if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
-                            alert("滚动条已经到达底部为" + $(document).scrollTop());
-                        }
-                    });
-                });
-            </script>
-    	</div>
-    </ion-content>
+  <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+    <ion-nav-buttons side="left">
+      <button class="button button-stable" ng-click="$ionicGoBack()">
+        <i style="font-size: 20px;" class="ion-chevron-left"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content  >
+    <div class="player-main">
+      <div class="player" id="player">
+        <video id="H5video" class="player_html5" controls="controls" ng-src="{{videoPath}}"></video>
+        <div ng-click="play();poster=!1" ng-show="poster" ng-init="poster=!0" style="z-index:100" id="poster" class="poster">
+          <img style="width:100%;height:100%;" class="poster-img" ng-src="{{videoInfo.picpath}}">
+          <img style="width:70px;height:70px;" class="poster-img" src="images/play-ico.png">
+        </div>
+      </div>
+    </div>
+    <ul class="video-navs">
+        <li ui-sref=".info" class='current'>课程详细</li>
+        <li ui-sref=".comment">评论</li>
+        <li ui-sref=".related">相关视频</li>
+    </ul>
+
+      <div class="video-tabs">
+        <div ui-view="">
+          <div class=" course-ifo">
+            <span class="ico ico-title-ico"></span>
+            <span>{{videoInfo.caption}}</span><br/><br/>
+            <span class="ico ico-who-ico"></span>
+            <span>{{videoInfo.provider}}</span><br/><br/>
+            <span class="ico ico-clock-ico"></span>
+            <span>{{videoInfo.videolength/60|number:0}}分钟</span><br/><br/>
+            <span class="ico ico-place-ico"></span>
+            <p style="margin-left: 38px;">{{videoInfo.script}}</p>
+          </div>
+        </div>
+      </div>
+  </ion-content>
 </ion-view>

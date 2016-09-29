@@ -1,3 +1,19 @@
-<ion-view animation="slide-left-right">
-  <div class="search-panel">搜索</div>
+<ion-view animation="slide-in-up">
+
+  <ion-content>
+    <div class="search-header">
+      <div class="container-s">
+        <form name="form">
+          <input required ng-enter="searchSubmit(caption)" name="search" id="search" ng-model="caption"  type="text"/>
+          <span class="cancle-btn" ng-click="$ionicGoBack();caption = ''">取消</span>
+          <span ng-show="!form.search.required" class="del-btn">x</span>
+        </form>
+      </div>
+  </div>
+    <div ng-show="showKeyboard" ng-init="showKeyboard=!0" class="keyword-list">
+      <ul>
+        <li>关键词</li>
+      </ul>
+    </div>
+  </ion-content>
 </ion-view>

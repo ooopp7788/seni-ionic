@@ -1,43 +1,7 @@
 angular.module('app.directives', [])
-	/*
-	首页轮播图插件
-	 */
-
-	.directive('mjSlides', function(){
-		return {
-			restrict: 'EA',
-			//replace: true,
-			//template: '<div class="slide-content"></div>',
-			link: function(scope, iele ,iattr) {
-
-			}
-		};
-	})
-
-		.directive('mjImg',function(){
-			return {
-				restrict: 'EA',
-				//replace: true,
-				template: '<div ng-init="idx=$index" ng-repeat="note in idxData.listnotes" class="img-container"><img alt="{{idx}}" class="slide-img" src="images/1-1.jpg" /></div>',
-				link: function(scope, iele ,iattr){
-					console.log(1)
-				}
-			}
-		})
-
-		.directive('mjCount',function(){
-			return {
-				restrict: 'EA',
-				//replace: true,
-				template: '<div class="count-btn"><span ng-repeat="note in idxData.listnotes"></span></div>',
-				link: function(scope, iele ,iattr){
-
-				}
-			}
-		})
 
   /*
-  播放页面选项卡
+  选项卡
    */
   .directive('mjTabs', function() {
       return {
@@ -152,6 +116,33 @@ angular.module('app.directives', [])
           event.preventDefault();
         }
       });
+    }
+  }
+})
+
+  /*
+  下滑菜单
+   */
+.directive('slideMenu',function(){
+  return {
+    restrict: 'EA',
+    link: function(scope,iele,iattrs){
+      console.log(iele[0])
+    }
+  }
+})
+
+  /*
+  选项卡点击变色
+   */
+.directive('clickColor',function(){
+  return {
+    restrict: 'EA',
+    link: function(scope,iele,iattrs){
+      iele.on('click',function (e) {
+        iele.parent().children().removeClass('current');
+        iele.addClass('current')
+      })
     }
   }
 });

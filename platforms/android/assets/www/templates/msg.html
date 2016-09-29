@@ -1,0 +1,23 @@
+<ion-view view-title="我的消息">
+  <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+    <ion-nav-buttons side="left">
+      <button class="button button-stable" ng-click="$ionicGoBack()">
+        <i style="font-size: 20px;" class="ion-chevron-left"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <ion-list>
+      <ion-item class=" item-avatar item-icon-right" ng-repeat="msg in msgs" type="item-text-wrap" href="#/tab/msg/{{msg.id}}">
+        <img ng-src="{{msg.face}}">
+        <h2>{{msg.name}}</h2>
+        <p>{{msg.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(msg)">
+          删除
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,9 +1,54 @@
-<ion-view view-title="Account">
+<ion-view view-title="我的学习">
+  <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+    <ion-nav-buttons side="left">
+      <a class="button button-stable" ng-href="#/setting">
+        <i style="font-size: 28px;" class="ion-gear-b"></i>
+      </a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <a class="button button-stable" ng-href="#/msg">
+        <i style="font-size: 28px;" class="ion-email"></i>
+      </a>
+    </ion-nav-buttons>
+  </ion-nav-bar>
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+    <div class="account">
+      <div class="account-top">
+        <div class="headpic">
+          <img src="images/head.png">
+        </div>
+        <div class="headcaption">
+          <p >你尚未登陆<br/>无法记录学习进度，建议登陆后再学习!</p>
+          <p class="logafter">你当前获得4学分<br/>请继续学习!</p>
+        </div>
+      </div>
+
+      <div class="account-bottom">
+        <div class="logpre">
+          <div class="login-btn" ng-click=openModal()>T9云平台会员登陆</div>
+          <a class="reg-btn" href="#/reg">没有账号，去注册 ></a>
+        </div>
+        <div class="logafter">
+          <ul >
+            <a ng-repeat="study in studys" ng-href="#/play/{{study.resid}}/info">
+              <li class="course-one">
+                <div class="thumbnail">
+                  <div class="inner">
+                    <img onerror="this.src='images/default.png'" ng-src="{{study.picpath}}" alt="缩略图"/>
+                  </div>
+                </div>
+                <div class="caption">
+                  <p class="caption-top">{{study.caption}}</p>
+                  <div class="caption-bottom">
+                    <span>{{study.clknum}}人学习</span><br/>
+                    <span>时长：{{study.videolength/60|number:0}}分钟</span>
+                  </div>
+                </div>
+              </li>
+            </a>
+          </ul>
+        </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

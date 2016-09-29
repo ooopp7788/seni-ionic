@@ -4,32 +4,55 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
-
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/wapmain.css" rel="stylesheet">
 
-    <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/ionic/js/angular/angular-animate.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-
-    <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/filters.js"></script>
   </head>
-  <body ng-app="starter">
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
-
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
-    <ion-nav-view></ion-nav-view>
+  <body ng-app="app" class="platform-android platform-cordova platform-webview">
+    <ion-nav-view animation="slide-left-right"></ion-nav-view>
   </body>
+  <script id="login.html" type="text/ng-template">
+    <div class="modal" ng-controller="logCtrl">
+      <ion-header-bar style="background-color: #f8f8f8">
+        <button class="button button-stable" ng-click="closeModal()">
+          <i style="font-size: 20px;" class="ion-chevron-left"></i>
+        </button>
+        <h1 class="title">登陆</h1>
+      </ion-header-bar>
+      <ion-content>
+        <div class="login-main">
+          <div class="top">
+            <a href="#/tab/idx"><img src="images/logo.png"></a>
+          </div>
+          <div class="bottom">
+            <form id="waploginForm" autocomplete="off">
+              <p>账&nbsp;&nbsp;&nbsp;号：
+                <input ng-model="login.userid" placeholder="请输入手机号或账号" type="text" class="userid" id="userid">
+              </p>
+              <p>密&nbsp;&nbsp;&nbsp;码：
+                <input ng-model="login.password" type="password" class="password" id="password">
+              </p>
+              <p>验证码：
+                <input ng-model="login.code" type="text" class="captcha" id="captcha">
+                <img id="captchaimg" ng-click="changeCode()" ng-src="{{code}}">
+              </p>
+              <p>
+                <input class="submit-btn" type="button" value="登录" ng-click="logSubmit()">
+              </p>
+              <p id="link"><a class="reg" href="">还没有账号？去注册 ></a></p>
+            </form>
+          </div>
+        </div>
+      </ion-content>
+    </div>
+  </script>
 </html>

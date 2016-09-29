@@ -13,9 +13,10 @@ angular.module('app', ['ionic',
   'ngAnimate'
 ])
 
-  .run(function ($ionicPlatform, $rootScope, $timeout, $location, $ionicModal) {
-    $rootScope.base = "http://123.57.212.58:8012/edu";
-
+  .run(function ($ionicPlatform, $rootScope, $timeout, $location, $ionicModal ,$http) {
+    //$rootScope.base = "http://123.57.212.58:8012/edu";
+    //$rootScope.base = "http://t9cloud.com";
+    $rootScope.base = "http://192.168.1.141:8080/seni_edu";
 
     $ionicModal.fromTemplateUrl('login.html', {
       scope: $rootScope,
@@ -55,13 +56,13 @@ angular.module('app', ['ionic',
           $rootScope.hidetabs = true;
         } else {
           $rootScope.hidetabs = false;
-        }
-        ;
+        };
       })
     });
   })
+  .config(function ($stateProvider, $sceDelegateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
 
-  .config(function ($stateProvider, $sceDelegateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    $httpProvider.defaults.withCredentials = true;
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -120,6 +121,12 @@ angular.module('app', ['ionic',
         }
       })
 
+      .state('sort', {
+        url: '/sort/:num',
+        templateUrl: 'templates/sort.html',
+        controller: 'SortCtrl'
+      })
+
       .state('play', {
         url: '/play/:resid',
         //abstract: true,
@@ -147,6 +154,12 @@ angular.module('app', ['ionic',
         url: '/msg',
         templateUrl: 'templates/msg.html',
         controller: 'MsgCtrl'
+      })
+
+      .state('setting', {
+        url: '/setting',
+        templateUrl: 'templates/setting.html',
+        controller: 'SetCtrl'
       });
 
     // if none of the above states are matched, use this as the fallback

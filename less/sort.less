@@ -1,0 +1,130 @@
+@blue: #2dA7E0;
+.sort-main{
+  width: 100%;
+  .menu-container {
+    width: 100%;
+    .zt-container {
+      width: 100%;
+      overflow: hidden;
+      height: 41px;
+      opacity: 1;
+      -webkit-transition-duration: 0.4s;
+      .zt-menu {
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        line-height: 0;
+        .zt-lists {
+          display: inline-block;
+          width: 100%;
+          line-height: 40px;
+          li {
+            display: block;
+            float: left;
+            line-height: 40px;
+            padding: 0 5px;
+            font-size: 13px;
+          }
+
+        }
+      }
+    }
+    .search-title {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 1px solid #ccc;
+      z-index: 10;
+      text-align: center;
+      span {
+        text-align: center;
+        color: #666;
+        margin: 0 auto;
+        position: relative;
+        font-size: 12px;
+        height: 40px;
+        padding-top: 5px;
+        padding-right: 20px;
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          right: 0px;
+          width: 0;
+          height: 0;
+          border-width: 5px;
+          border-style: solid;
+          z-index: 20;
+          border-color: #666 transparent transparent transparent;
+        }
+        &:after {
+          content: "";
+          position: absolute;
+          right: 0px;
+          bottom: 2px;
+          width: 0;
+          z-index: 20;
+          height: 0;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #eee transparent transparent transparent;
+        }
+      }
+    }
+  }
+
+}
+.search-content {
+  width: 96%;
+  margin: 0 2%;
+  .course-list {
+    width: 100%;
+    clear: both;
+    display: inline-block;
+    .course-one {
+      display: table;
+      width: 100%;
+      float: left;
+      margin-top: 10px;
+      a {
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        .thumbnail {
+          width: 50%;
+          float: left;
+          border-radius: 5px;
+          position: relative;
+          overflow: hidden;
+          .img-container {
+            width: 100%;
+            padding-top: 56%;
+            position: relative;
+            overflow: hidden;
+            img {
+              position: absolute;
+              top: 0;
+              left: 0;
+              overflow: hidden;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+        .caption {
+          width: 45%;
+          margin-left: 3%;
+          float: left;
+          height: 100%;
+          border-bottom: 1px solid #CCC;
+          b {
+            font-size: 13px;
+            overflow: hidden;
+            line-height: 20px;
+            padding-top: 2px;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

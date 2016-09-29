@@ -9,17 +9,17 @@
   <ion-content  >
     <div class="player-main">
       <div class="player" id="player">
-        <video id="H5video" class="player_html5" controls="controls" ng-src="{{videoPath}}"></video>
-        <div ng-click="play();poster=!1" ng-show="poster" ng-init="poster=!0" style="z-index:100" id="poster" class="poster">
+        <video id="H5video{{resid}}" class="player_html5" controls="controls" ng-src="{{videoPath}}"></video>
+        <div ng-click="play(e);poster=!1" ng-show="poster" ng-init="poster=!0" style="z-index:100" id="poster" class="poster">
           <img style="width:100%;height:100%;" class="poster-img" ng-src="{{videoInfo.picpath}}">
           <img style="width:70px;height:70px;" class="poster-img" src="images/play-ico.png">
         </div>
       </div>
     </div>
     <ul class="video-navs">
-        <li ui-sref=".info" class='current'>课程详细</li>
-        <li ui-sref=".comment">评论</li>
-        <li ui-sref=".related">相关视频</li>
+        <li click-color ui-sref=".info" class='current'>课程详细</li>
+        <li click-color ui-sref=".comment">评论</li>
+        <li click-color ui-sref=".related">相关视频</li>
     </ul>
 
       <div class="video-tabs">
