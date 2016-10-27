@@ -1,4 +1,11 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', [
+  "ionic",
+  "ngSanitize",
+  "com.2fdevs.videogular",
+  "com.2fdevs.videogular.plugins.controls",
+  "com.2fdevs.videogular.plugins.overlayplay",
+  "com.2fdevs.videogular.plugins.poster"
+])
 
   .controller('IdxCtrl',['$interval','$scope','$rootScope', '$http', '$timeout', '$ionicLoading','Kinds','$ionicSlideBoxDelegate', function ($interval, $scope, $rootScope, $http, $timeout, $ionicLoading, Kinds,$ionicSlideBoxDelegate) {
     $scope.loaded = false;
@@ -116,7 +123,6 @@ angular.module('app.controllers', [])
     });
     $scope.sortQurey = function (sortIndex,timeIndex) {
       console.log(sortIndex,timeIndex)
-
     };
     $scope.slideToggle = function (){
       if(!$scope.menuStyle) {
@@ -133,7 +139,9 @@ angular.module('app.controllers', [])
     };
   }])
 
-  .controller('PlayCtrl',['$scope','$rootScope','$state','$stateParams','$http', function ($scope, $rootScope,$state, $stateParams, $http) {
+  .controller('PlayCtrl',['$scope','$rootScope','$state','$stateParams','$http','$sce', function ($scope, $rootScope,$state, $stateParams, $http ,$sce) {
+
+
     $scope.resid = $stateParams.resid;
 
     $scope.play = function (){
@@ -142,14 +150,50 @@ angular.module('app.controllers', [])
     };
 
     var videoUrl = $rootScope.base+'/jsons/play?resid='+$scope.resid;
-    $http.post(videoUrl).success(function (data) {
-      $scope.videoPath = data.body.doop2filesRealPath;
-      $scope.videoInfo = data.body.t9res;
-      $scope.relates = data.body.listT9res;
+    $http.post(videoUrl).success(function (response) {
+      $scope.relates = response.body.listT9res;
+      $scope.config = {
+        sources: [
+          {src: $sce.trustAsResourceUrl(response.body.doop2filesRealPath), type: "video/mp4"},
+        ],
+        tracks: [
+          {
+            //src: "http://www.videogular.com/assets/subs/pale-blue-dot.vtt",
+            src: "others/pale-blue-dot.vtt",
+            kind: "subtitles",
+            srclang: "en",
+            label: "English",
+            default: ""
+          }
+        ],
+        theme: "bower_components/videogular-themes-default/videogular.css",
+        plugins: {
+          //播放器预览图片
+          poster: response.body.t9res.picpath
+        }
+      };
+    });
+
+    $scope.$on('$ionicView.enter', function() {
+      var videos = document.getElementsByTagName('video');
+      var clientW = document.body.clientWidth;
+      var videoContainer = document.getElementsByClassName('player-main');
+      console.log(videoContainer)
+      for (var j=0,k= videoContainer.length; j<k; j++){
+        videoContainer[j].style.width = clientW + 'px';
+        videoContainer[j].style.height = clientW/16*9 + 'px';
+        console.log(videoContainer[j].style)
+      }
+      for (var i=0,l= videos.length;i<l;i++){
+        videos[i].pause();
+      }
     });
 
     $scope.$on('$ionicView.leave', function() {
-      document.getElementById('H5video'+$scope.resid).pause();
+      var videos = document.getElementsByTagName('video');
+      for (var i=0,l= videos.length;i<l;i++){
+        videos[i].pause();
+      }
     });
   }])
   .controller('CommentCtrl',['$scope','$rootScope','Comments','$ionicLoading','$ionicPopup', function ($scope,$rootScope, Comments,$ionicLoading,$ionicPopup) {
@@ -191,25 +235,36 @@ angular.module('app.controllers', [])
 
   .controller('SearchCtrl',['$scope','$rootScope','$http', function ($scope,$rootScope,$http) {
     document.getElementById('search').focus();
-    $scope.keywords = ['电商','经济半小时','互联网','农产品'];
-
-    $scope.searchSubmit = function (showState,caption){
+    $scope.keywords = ['电商','经济','互联网','农产品','T9','电子商务','电子信息'];
+    $scope.showState={
+      showKeyword:true,
+      searching:false,
+      result:true
+    };
+    $scope.caption='';
+    $scope.searchClear = function (){
+      $scope.caption = '';
+      if($scope.courses)$scope.courses = '';
+      $scope.showState.showKeyword = true;
+      document.getElementById('search').focus();
+    };
+    $scope.searchSubmit = function (caption){
       var searchUrl = $rootScope.base + '/json/json_search';
 
-      if(showState.showKeyword)showState.showKeyword = !1;
-      if(!showState.searching)showState.searching = !0;
+      $scope.caption = caption;
+      if($scope.showState.showKeyword)$scope.showState.showKeyword = !1;
+      if(!$scope.showState.searching)$scope.showState.searching = !0;
       $http({
         url:searchUrl,
         method: 'get',
         params: {'caption':caption}
       }).success(function (data) {
-        showState.searching = !1;
+        $scope.showState.searching = !1;
         $scope.courses = data;
-        showState.result = !0;
+        $scope.showState.result = !0;
         if(data.length==0){
-          console.log(showState)
-          showState.result = !1;
-          showState.showKeyword = !0;
+          $scope.showState.result = !1;
+          $scope.showState.showKeyword = !0;
         }
       })
     }
@@ -218,7 +273,6 @@ angular.module('app.controllers', [])
   .controller('MsgCtrl',['$scope', 'Msgs', function ($scope, Msgs) {
     Msgs.all().success(function (response) {
       if(response.code == 200){
-        console.log(response)
         $scope.msgs = response.body;
       }
     });

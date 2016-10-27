@@ -1,18 +1,16 @@
 <ion-view animation="slide-in-up">
 
-  <ion-content ng-init="showState={showKeyword:true,searching:false,result:true}">
+  <ion-content>
     <div class="search-header">
       <div class="container-s">
-        <form name="form">
-          <input required ng-enter="searchSubmit(showState,caption)" name="search" id="search" ng-model="caption"  type="text"/>
+          <input ng-enter="searchSubmit(caption)" name="search" id="search" ng-model="caption"  type="text"/>
           <span class="cancle-btn" ng-click="$ionicGoBack();caption = ''">取消</span>
-          <span ng-click="caption=''" ng-show="!form.search.required" class="del-btn">x</span>
-        </form>
+          <span ng-click="searchClear();caption=''" ng-show="caption" class="del-btn">x</span>
       </div>
     </div>
     <div ng-show="showState.showKeyword"  class="keyword-list">
       <ul>
-        <li ng-click="searchSubmit(showState,keyword)" ng-repeat="keyword in keywords">{{keyword}}</li>
+        <li ng-click="searchSubmit(keyword)" ng-repeat="keyword in keywords">{{keyword}}</li>
       </ul>
     </div>
     <div ng-show="showState.searching" class="loading">

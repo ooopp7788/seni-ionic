@@ -102,12 +102,12 @@ img{width:100%;height:100%}
 .popup-body .current{background-color:#2dA7E0;color:#fff}
 .sort-main{width:100%}
 .sort-main .menu-container{width:100%}
-.sort-main .menu-container .zt-container{width:100%;overflow:hidden;height:41px;opacity:1;-webkit-transition-duration:.4s}
-.sort-main .menu-container .zt-container .zt-menu{width:100%;border-bottom:1px solid #ccc;line-height:0}
-.sort-main .menu-container .zt-container .zt-menu .zt-lists{display:inline-block;width:100%;line-height:40px}
-.sort-main .menu-container .zt-container .zt-menu .zt-lists li{display:block;float:left;line-height:40px;padding:0 5px;font-size:13px}
-.sort-main .menu-container .search-title{width:100%;height:40px;line-height:40px;border-bottom:1px solid #ccc;z-index:10;text-align:center}
-.sort-main .menu-container .search-title span{text-align:center;color:#666;margin:0 auto;position:relative;font-size:12px;height:40px;padding-top:5px;padding-right:20px}
+.sort-main .menu-container .zt-container{width:100%;overflow:hidden;opacity:1;-webkit-transition-duration:.4s}
+.sort-main .menu-container .zt-container .zt-menu{width:100%;border-bottom:1px solid #eee}
+.sort-main .menu-container .zt-container .zt-menu .zt-lists{display:inline-block;width:90%;margin:10px 5%}
+.sort-main .menu-container .zt-container .zt-menu .zt-lists li{display:block;float:left;width:33.33%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;line-height:40px;font-size:14px}
+.sort-main .menu-container .search-title{width:100%;height:40px;line-height:40px;border-bottom:1px solid #eee;z-index:10;text-align:center}
+.sort-main .menu-container .search-title span{text-align:center;color:#666;margin:0 auto;position:relative;font-size:14px;height:40px;padding-top:5px;padding-right:20px}
 .sort-main .menu-container .search-title span:before{content:"";position:absolute;bottom:0;right:0;width:0;height:0;border-width:5px;border-style:solid;z-index:20;border-color:#666 transparent transparent transparent}
 .sort-main .menu-container .search-title span:after{content:"";position:absolute;right:0;bottom:2px;width:0;z-index:20;height:0;border-width:5px;border-style:solid;border-color:#eee transparent transparent transparent}
 .search-content{width:96%;margin:0 2%}

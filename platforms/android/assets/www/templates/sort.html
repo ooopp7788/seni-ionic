@@ -6,7 +6,7 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-      <a class="button button-stable" ng-href="#/msg">
+      <a class="button button-stable" ng-href="#/search">
         <i style="font-size: 28px;" class="ion-search"></i>
       </a>
     </ion-nav-buttons>
@@ -17,14 +17,13 @@
         <div ng-style="menuStyle" class="zt-container" ng-init="timeIndex=-1;sortIndex=-1">
           <div class="zt-menu">
             <ul class="zt-lists">
-              <li style="font-weight: bold" class="zt-list-one">分类：</li>
               <li ng-click="sortQurey(-1,-1)" class="zt-list-one">全部</li>
               <li ng-repeat="sort in sorts">
                 <a ng-click="sortQurey($index,timeIndex)" href="javascript:void(0)">{{sort.t9reskinds.name}}</a>
               </li>
             </ul>
           </div>
-          <div class="zt-menu">
+          <div style='display:none' class="zt-menu">
             <ul class="zt-lists">
               <li style="font-weight: bold" class="zt-list-one">时间：</li>
               <li ><a ng-click="sortQurey(sortIndex,-1)" href="javascript:void(0)">全部</a></li>

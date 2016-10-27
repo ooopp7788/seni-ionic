@@ -1,24 +1,24 @@
-// Ionic Starter App
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic',
+angular.module('app', [
+  'ionic',
   'app.controllers',
   'app.services',
   'app.directives',
   'app.filters',
-  'ngAnimate'
+  'ngAnimate',
+  'ngCordova'//Cordova插件依赖
 ])
 
-  .run(function ($ionicPlatform, $rootScope, $timeout, $location, $ionicModal ,$http) {
+  .run(function ($cordovaDevice, $ionicPlatform, $rootScope, $timeout, $location, $ionicModal ,$http ,$cordovaStatusbar) {
+
+    //ng全局变量：服务器url，登陆状态，个人信息
     //$rootScope.base = "http://123.57.212.58:8012/edu";
     $rootScope.base = "http://t9cloud.com";
     //$rootScope.base = "http://192.168.1.141:8080/seni_edu";
-    $rootScope.loged = false;
-    $rootScope.info = {};
+    $rootScope.loged = false;//登陆状态
+    $rootScope.info = {};//个人信息
+
+    //登陆Modal
     $ionicModal.fromTemplateUrl('login.html', {
       scope: $rootScope,
       animation: 'slide-in-up'
@@ -35,22 +35,28 @@ angular.module('app', ['ionic',
       $rootScope.modal.remove();
     });
 
-
-    $ionicPlatform.ready(function () {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
-      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        cordova.plugins.Keyboard.disableScroll(true);
-
-      }
-      if (window.StatusBar) {
-        // org.apache.cordova.statusbar required
-        StatusBar.styleDefault();
+    //cordova插件：statusBar
+    $ionicPlatform.ready(function() {
+      console.log(cordova,$cordovaStatusbar)
+      if ($cordovaDevice.getPlatform().toLowerCase == 'android') {
+        StatusBar.backgroundColorByHexString("#333");
+      }else{
+        $cordovaStatusbar.overlaysWebView(false);
+        $cordovaStatusbar.style(1);
+        StatusBar.styleLightContent();
+        $cordovaStatusbar.styleColor('black');
       }
     });
 
+    //路由改变start，判断msg页面登陆状态
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+      if ($location.path() == '/msg' && !$rootScope.loged) {
+          event.preventDefault();
+          $rootScope.openModal();
+        }
+    });
 
+    //tabs隐藏，登陆状态检查
     $rootScope.$on('$stateChangeSuccess', function (evt, current, pre) {
       $timeout(function () {
         if ($location.path() == '/tab/idx' || $location.path() == '/tab/chats' || $location.path() == '/tab/account') {
@@ -71,18 +77,18 @@ angular.module('app', ['ionic',
       }
     });
   })
-  .config(function ($stateProvider, $sceDelegateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
 
+  //provider配置
+  .config(function ($stateProvider, $sceDelegateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
+    //允许加载资源的域
     $httpProvider.defaults.withCredentials = true;
 
-    // Ionic uses AngularUI Router which uses the concept of states
-    // Learn more here: https://github.com/angular-ui/ui-router
-    // Set up the various states which the app can be in.
-    // Each state's controller can be found in controllers.js
     $sceDelegateProvider.resourceUrlWhitelist([
       'self',
       // Allow loading from our assets domain.  Notice the difference between * and **.
       'http://124.227.108.93:9001/**']);
+
+      //路由配置
     $stateProvider
 
       .state('tab', {
