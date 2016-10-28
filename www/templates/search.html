@@ -23,15 +23,15 @@
     <div class="search-content">
       <ul class="course-list">
         <li ng-repeat="course in courses" class="course-one">
-          <a ng-href="wapplay/{{course.resid}}">
+          <a ng-href="#/play/{{course.resid}}">
             <div class="thumbnail">
               <div class="img-container">
                 <img onerror="this.src='images/default.png'" ng-src="{{course.picpath}}" alt="缩略图">
               </div>
             </div>
             <div class="caption">
-              <b>{{course.caption}}</b>
-              <p>时长：{{course.checktime}}分钟</p><p>观看：{{course.clknum}}人</p>
+              <b ng-cloak>{{course.caption}}</b>
+              <p ng-cloak>时长：{{course.videolength/60 | number: null}}分钟</p><p ng-cloak>观看：{{course.clknum}}人</p>
             </div>
           </a>
         </li>

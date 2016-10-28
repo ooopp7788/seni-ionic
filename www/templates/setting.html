@@ -8,9 +8,15 @@
   </ion-nav-bar>
   <ion-content>
     <ion-list>
-      <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-      </ion-toggle>
+      <ion-item style="color: #000" ng-click="feedBack()" class="item-icon-right" type="item-text-wrap">
+        <span>反馈</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+
+      <ion-item class="item-icon-right" type="item-text-wrap" href="#/t9cloud">
+        <span>关于T9云教室</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

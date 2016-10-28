@@ -35,28 +35,28 @@
           </div>
         </div>
         <div ng-click="slideToggle()" class="search-title">
-          <span ng-init="querySort='全部';querytimeText=' '">{{querySort}}·{{queryTime}} </span>
+          <span ng-cloak>{{querySort}}·{{queryTime}} </span>
         </div>
       </div>
       <div class="search-content">
         <ul class="course-list">
-          <li class="course-one">
-            <a href="wapplay?resid=001002013">
+          <li ng-repeat="course in courses" class="course-one">
+            <a ng-href="#/play/{{course.resid}}">
               <div class="thumbnail">
                 <div class="img-container">
-                  <img src="http://124.227.108.93:8001/img/001/001002010.jpg" alt="缩略图">
+                  <img ng-src="{{course.picpath}}" alt="缩略图">
                 </div>
               </div>
               <div class="caption">
-                <b>社会化媒体推广与传播</b>
-                <p>时长：238分钟</p><p>观看：33人</p>
+                <b ng-cloak>{{course.caption}}</b>
+                <p ng-cloak>时长：{{course.videolength/60 | number: null}}分钟</p><p ng-cloak>观看：{{course.clknum}}人</p>
               </div>
             </a>
           </li>
         </ul>
         <div class="refresh" style="display: none;">
           <p>
-            <img class="refresh-img" src="static/images/loading.gif" style="display: none;"> <span class="refresh-text">没有更多内容~</span>
+            <img class="refresh-img" src="images/loading.gif" style="display: none;"> <span class="refresh-text">没有更多内容~</span>
           </p>
         </div>
         <form style="display: none" id="form1">

@@ -13,8 +13,8 @@ angular.module('app', [
 
     //ng全局变量：服务器url，登陆状态，个人信息
     //$rootScope.base = "http://123.57.212.58:8012/edu";
-    $rootScope.base = "http://t9cloud.com";
-    //$rootScope.base = "http://192.168.1.141:8080/seni_edu";
+    //$rootScope.base = "http://t9cloud.com";
+    $rootScope.base = "http://192.168.1.168:8080/seni_edu";
     $rootScope.loged = false;//登陆状态
     $rootScope.info = {};//个人信息
 
@@ -139,7 +139,7 @@ angular.module('app', [
       })
 
       .state('sort', {
-        url: '/sort/:num',
+        url: '/sort/:kindone/:kindtwo',
         templateUrl: 'templates/sort.html',
         controller: 'SortCtrl'
       })
@@ -201,6 +201,12 @@ angular.module('app', [
         url: '/phone',
         templateUrl: 'templates/phone.html',
         controller: 'PhoneCtrl'
+      })
+
+      .state('t9cloud', {
+        url: '/t9cloud',
+        templateUrl: 'templates/t9cloud.html',
+        controller: 'T9cloudCtrl'
       });
 
     // if none of the above states are matched, use this as the fallback

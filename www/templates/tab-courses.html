@@ -14,30 +14,30 @@
   <ion-content>
     <div class="hot-area">
       <div class="hot-col">
-        <a href="#">
+        <a href="#/play/74">
           <div class="thumbnail">
             <div class="img-mask"></div>
             <img src="images/1-1.jpg">
           </div>
           <div class="caption">
             <p class="title">微课堂</p>
-            <p class="intro">迷你课堂，精品微课直击重点难点</p>
+            <p class="intro">迷你课堂，精品微课</p>
           </div>
         </a>
       </div>
       <div class="hot-col">
-        <a href="#">
+        <a href="#/play/74">
           <div class="thumbnail">
             <div class="img-mask"></div>
             <img src="images/1-2.jpg">
           </div>
           <div class="caption">
-            <p class="title">微课堂</p>
-            <p class="intro">迷你课堂，精品微课直击重点难点</p>
+            <p class="title">T9云课堂</p>
+            <p class="intro">在线课堂，直击重点难点</p>
           </div>
         </a>
       </div>
-      <div class="hot-bubble">
+      <div style="display: none;" class="hot-bubble">
         <ul>
           <li><a href="#">扶贫专栏</a></li>
           <li><a href="#">扶贫专栏</a></li>
@@ -45,13 +45,17 @@
         </ul>
       </div>
     </div>
-    <div ng-repeat="one in kinds" class="zt-module">
+    <div ng-init="oneKind = $index" ng-repeat="one in kinds" class="zt-module">
       <div class="zt-name">
         <p>{{one.t9reskinds.name}}</p>
       </div>
       <div class="fl-list">
         <ul>
-          <a href="#"><li ng-repeat="two in one.list_ResKinds">{{two.t9reskinds.name}}</li></a>
+          <li  ng-repeat="two in one.list_ResKinds">
+            <a ng-href="#/sort/{{oneKind}}/{{$index}}">
+              {{two.t9reskinds.name}}
+            </a>
+          </li>
         </ul>
       </div>
     </div>

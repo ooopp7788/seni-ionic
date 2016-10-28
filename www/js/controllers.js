@@ -84,6 +84,7 @@ angular.module('app.controllers', [
     Kinds.all().success(function (data) {
       $scope.kinds =data;
     });
+
   }])
 
   .controller('ChatDetailCtrl',['$scope', '$stateParams', 'Chats', function ($scope, $stateParams, Chats) {
@@ -93,15 +94,12 @@ angular.module('app.controllers', [
   .controller('AccountCtrl',['$scope','$rootScope','$http','$location', function ($scope,$rootScope,$http,$location) {
     var url = $rootScope.base + '/json/json_mystudying';
     $http.get(url).success(function (response) {
-      console.log(response)
       $scope.studys = response
     });
     $rootScope.$on('loged',function (e,data) {
-      console.log(e,data)
       if(data)$scope.info = data.body;
       $rootScope.loged = true;
       $http.get(url).success(function (response) {
-        console.log(response)
         $scope.studys = response
       })
     });
@@ -111,19 +109,41 @@ angular.module('app.controllers', [
     }
   }])
 
-  .controller('SortCtrl',['$scope','$rootScope','$stateParams','Kinds', function ($scope,$rootScope,$stateParams,Kinds) {
-    Kinds.one($stateParams.num).then(function (response) {
+  .controller('SortCtrl',['$scope','$rootScope','$stateParams','Kinds','$http', function ($scope,$rootScope,$stateParams,Kinds,$http) {
+    Kinds.one($stateParams.kindone).then(function (response) {
       $scope.title = response.name;//一级标题
       $scope.code = response.code;//一级分类code
       $scope.sorts = response.data;//二级分类list
-      console.log(response.data)
+      $scope.sortQurey($stateParams.kindtwo,-1);//初始化一次
     });
     Kinds.all().then(function (response) {
-      console.log(response)
     });
+
+    //分类查询：sortIndex，时间查询暂时未启用:timeIndex
     $scope.sortQurey = function (sortIndex,timeIndex) {
-      console.log(sortIndex,timeIndex)
+      var kindcode;
+      if(sortIndex == -1){
+        kindcode = $scope.code;
+        $scope.querySort = '全部';
+      }//-1为一级查询
+      else {
+        kindcode = $scope.sorts[sortIndex].t9reskinds.code;
+        $scope.querySort = $scope.sorts[sortIndex].t9reskinds.name;
+      }//二级查询
+      var url = $rootScope.base + '/json-categories';
+      $http({
+        url: url,
+        method: 'post',
+        params: {
+          kindcode: kindcode,
+          //pasttime: '6moon',
+          //pageNumber: 1
+        }
+      }).success(function (response) {
+        $scope.courses = response.body.page.content;
+      })
     };
+
     $scope.slideToggle = function (){
       if(!$scope.menuStyle) {
         $scope.menuStyle = {
@@ -141,17 +161,12 @@ angular.module('app.controllers', [
 
   .controller('PlayCtrl',['$scope','$rootScope','$state','$stateParams','$http','$sce', function ($scope, $rootScope,$state, $stateParams, $http ,$sce) {
 
-
     $scope.resid = $stateParams.resid;
-
-    $scope.play = function (){
-      $scope.poster = !1;
-      document.getElementById('H5video'+$scope.resid).play();
-    };
 
     var videoUrl = $rootScope.base+'/jsons/play?resid='+$scope.resid;
     $http.post(videoUrl).success(function (response) {
       $scope.relates = response.body.listT9res;
+      $scope.videoInfo = response.body.t9res;
       $scope.config = {
         sources: [
           {src: $sce.trustAsResourceUrl(response.body.doop2filesRealPath), type: "video/mp4"},
@@ -205,11 +220,9 @@ angular.module('app.controllers', [
       }
       Comments.submit($scope.resid,$scope.text).success(function (data) {
         if(data.code===111){
-          console.log(data)
           $rootScope.openModal();
         }
         if(data.code===222){
-          console.log(data)
           $scope.loading = !0;
           $ionicPopup.alert({
             title: '评论成功！'
@@ -268,7 +281,7 @@ angular.module('app.controllers', [
     }
   }])
 
-  .controller('MsgCtrl',['$scope', 'Msgs', function ($scope, Msgs) {
+  .controller('MsgCtrl',['$scope', 'Msgs',  function ($scope, Msgs ) {
     Msgs.all().success(function (response) {
       if(response.code == 200){
         $scope.msgs = response.body;
@@ -279,9 +292,39 @@ angular.module('app.controllers', [
     };
   }])
 
-  .controller('SetCtrl',['$scope', 'Msgs', function ($scope, Msgs) {
-
+  .controller('SetCtrl',['$scope', '$rootScope', '$ionicPopup', '$http', function ($scope, $rootScope, $ionicPopup, $http) {
+    $scope.feedBack = function () {
+      var url = $rootScope.base + '/';
+      $ionicPopup.show({
+        title: '反馈', // String. 弹窗的标题。
+        template: '<input ng-model="fbText" type="text"/>',
+        scope: $scope,
+        buttons: [{ //Array[Object] (可选)。放在弹窗footer内的按钮。
+          text: '取消',
+          type: 'button-default',
+          onTap: function(e) {
+          }
+        }, {
+          text: '提交',
+          type: 'button-positive',
+          onTap: function(e) {
+            $http({
+              url: url,
+              method: 'get',
+              params: {
+                feedBack: $scope.fbText
+              }
+            }).success(function (res) {
+            });
+          }
+        }]
+      })
+    }
   }])
+
+  .controller('T9cloudCtrl',function(){
+
+  })
 
   .controller('InfoCtrl',['$scope', '$rootScope','$http','$location','$ionicPopup', function ($scope,$rootScope,$http,$location,$ionicPopup) {
     $scope.change = {};
@@ -307,7 +350,6 @@ angular.module('app.controllers', [
                 idname: $scope.change.name
               }
             }).success(function (res) {
-              console.log(res)
               $rootScope.info.idname = $scope.change.name;
             });
           }
@@ -336,7 +378,6 @@ angular.module('app.controllers', [
                 sex: $scope.change.sex
               }
             }).success(function (res) {
-              console.log(res)
               $rootScope.info.sex = $scope.change.sex;
             });
           }
@@ -365,7 +406,6 @@ angular.module('app.controllers', [
                 dptname: $scope.change.dptname
               }
             }).success(function (res) {
-              console.log(res)
               $rootScope.info.dptname = $scope.change.dptname;
             });
           }
@@ -394,8 +434,9 @@ angular.module('app.controllers', [
                 dptname: $scope.change.poscode
               }
             }).success(function (res) {
-              console.log(res)
               $rootScope.info.poscode = $scope.change.poscode;
+            }).error(function (res) {
+              console.log(res)
             });
           }
         }]
