@@ -13,8 +13,8 @@ angular.module('app', [
 
     //ng全局变量：服务器url，登陆状态，个人信息
     //$rootScope.base = "http://123.57.212.58:8012/edu";
-    //$rootScope.base = "http://t9cloud.com";
-    $rootScope.base = "http://192.168.1.168:8080/seni_edu";
+    $rootScope.base = "http://t9cloud.com";
+    //$rootScope.base = "http://192.168.1.116:8080/seni_edu";
     $rootScope.loged = false;//登陆状态
     $rootScope.info = {};//个人信息
 

@@ -48,7 +48,11 @@ angular.module('app.services', [])
       },
       refresh: function(resid,pagenum){
         var CommentUrl = $rootScope.base+'/commentpage?resid='+resid+'&pagenum='+pagenum;
-        return $http.post(CommentUrl)
+        return $http({
+          method: 'post',
+          url: CommentUrl,
+          headers: {'Cache-Control':'no-cache'}
+        })
       },
       submit: function(resid,text){
         var SubmitUrl = $rootScope.base+'/PlayComment?resid='+resid+'&CommentText='+text;

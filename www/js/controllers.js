@@ -12,9 +12,11 @@ angular.module('app.controllers', [
     $scope.noteSlideTime = 3000;//主页通知动画时间
     var getData = function(){
       $scope.loaded = false;
+      /*
       $ionicLoading.show({
         template: '加载中 ..'
       });
+       */
       //轮播
       var getSlides = function (){
         $http.post($rootScope.base+"/json/homepics").success(function(data){
@@ -93,9 +95,11 @@ angular.module('app.controllers', [
 
   .controller('AccountCtrl',['$scope','$rootScope','$http','$location', function ($scope,$rootScope,$http,$location) {
     var url = $rootScope.base + '/json/json_mystudying';
-    $http.get(url).success(function (response) {
-      $scope.studys = response
-    });
+    if($rootScope.loged){
+      $http.get(url).success(function (response) {
+        $scope.studys = response
+      });
+    }
     $rootScope.$on('loged',function (e,data) {
       if(data)$scope.info = data.body;
       $rootScope.loged = true;
@@ -245,30 +249,33 @@ angular.module('app.controllers', [
   }])
 
   .controller('SearchCtrl',['$scope','$rootScope','$http', function ($scope,$rootScope,$http) {
-    document.getElementById('search').focus();
     $scope.keywords = ['电商','经济','互联网','农产品','T9','电子商务','电子信息'];
-    $scope.showState={
-      showKeyword:true,
-      searching:false,
-      result:true
-    };
-    $scope.caption='';
-    $scope.searchClear = function (){
-      $scope.caption = '';
-      if($scope.courses)$scope.courses = '';
-      $scope.showState.showKeyword = true;
-      document.getElementById('search').focus();
-    };
-    $scope.searchSubmit = function (caption){
-      var searchUrl = $rootScope.base + '/json/json_search';
 
-      $scope.caption = caption;
-      if($scope.showState.showKeyword)$scope.showState.showKeyword = !1;
-      if(!$scope.showState.searching)$scope.showState.searching = !0;
+    $scope.init = function () {
+      document.getElementById('search').focus();
+      $scope.showState={
+        showKeyword:true,
+        searching:false,
+        result:true
+      };
+      $scope.caption='';
+    };
+
+    $scope.searchClear = function (){
+      if($scope.courses)$scope.courses = '';
+      $scope.init();
+    };
+
+    $scope.searchSubmit = function (keyWorld){
+      var searchUrl = $rootScope.base + '/json/json_search';
+      console.log(keyWorld);
+      if(keyWorld)$scope.caption = keyWorld;
+      $scope.showState.showKeyword = !1;
+      $scope.showState.searching = !0;
       $http({
         url:searchUrl,
         method: 'get',
-        params: {'caption':caption}
+        params: {'caption':$scope.caption}
       }).success(function (data) {
         $scope.showState.searching = !1;
         $scope.courses = data;
@@ -278,7 +285,9 @@ angular.module('app.controllers', [
           $scope.showState.showKeyword = !0;
         }
       })
-    }
+    };
+
+    $scope.init();
   }])
 
   .controller('MsgCtrl',['$scope', 'Msgs',  function ($scope, Msgs ) {
@@ -345,7 +354,7 @@ angular.module('app.controllers', [
           onTap: function(e) {
             $http({
               url: url,
-              method: 'get',
+              method: 'post',
               params: {
                 idname: $scope.change.name
               }
@@ -373,7 +382,7 @@ angular.module('app.controllers', [
           onTap: function(e) {
             $http({
               url: url,
-              method: 'get',
+              method: 'post',
               params: {
                 sex: $scope.change.sex
               }
@@ -401,7 +410,7 @@ angular.module('app.controllers', [
           onTap: function(e) {
             $http({
               url: url,
-              method: 'get',
+              method: 'post',
               params: {
                 dptname: $scope.change.dptname
               }
@@ -429,7 +438,7 @@ angular.module('app.controllers', [
           onTap: function(e) {
             $http({
               url: url,
-              method: 'get',
+              method: 'post',
               params: {
                 dptname: $scope.change.poscode
               }

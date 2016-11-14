@@ -3,14 +3,16 @@
   <ion-content>
     <div class="search-header">
       <div class="container-s">
-          <input ng-enter="searchSubmit(caption)" name="search" id="search" ng-model="caption"  type="text"/>
-          <span class="cancle-btn" ng-click="$ionicGoBack();caption = ''">取消</span>
-          <span ng-click="searchClear();caption=''" ng-show="caption" class="del-btn">x</span>
+          <input ng-enter="searchSubmit()" name="search" id="search" ng-model="caption"  type="text"/>
+          <span class="cancle-btn" ng-click="$ionicGoBack()">取消</span>
+          <span ng-click="searchClear()" ng-show="caption" class="del-btn">x</span>
       </div>
     </div>
     <div ng-show="showState.showKeyword"  class="keyword-list">
       <ul>
-        <li ng-click="searchSubmit(keyword)" ng-repeat="keyword in keywords">{{keyword}}</li>
+        <li ng-click="searchSubmit(keyword)" ng-repeat="keyword in keywords">{{keyword}}
+          <a ng-href={{"#/sort/"+$index+"/-1"}}></a>
+        </li>
       </ul>
     </div>
     <div ng-show="showState.searching" class="loading">
